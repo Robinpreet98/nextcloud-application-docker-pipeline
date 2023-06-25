@@ -7,7 +7,7 @@ pipeline {
     agent any
 
     environment {
-        registry = "757750585556.dkr.ecr.ca-central-1.amazonaws.com/nextxloudapplications"
+        registry = "492552149929.dkr.ecr.us-east-1.amazonaws.com/nextcloud"
     }
     stages {
         stage('Checkout') {
@@ -28,8 +28,8 @@ pipeline {
         stage ("Push to ECR") {
             steps {
                 script {
-                    sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 757750585556.dkr.ecr.us-east-1.amazonaws.com'
-                    sh '757750585556.dkr.ecr.ca-central-1.amazonaws.com/nextxloudapplications:$BUILD_NUMBER'
+                    sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 492552149929.dkr.ecr.us-east-1.amazonaws.com'
+                    sh '492552149929.dkr.ecr.us-east-1.amazonaws.com/nextcloud:$BUILD_NUMBER'
                     
                 }
             }
