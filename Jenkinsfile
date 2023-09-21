@@ -2,12 +2,12 @@ pipeline {
 
     tools{
 
-        maven 'maven3.9.2'
+        maven 'maven3.9.4'
     }
     agent any
 
     environment {
-        registry = "492552149929.dkr.ecr.us-east-1.amazonaws.com/nextcloud"
+        registry = "492552149929.dkr.ecr.ca-central-1.amazonaws.com/nextcloudapp"
     }
     stages {
         stage('Checkout') {
@@ -28,8 +28,8 @@ pipeline {
         stage ("Push to ECR") {
             steps {
                 script {
-                    sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 492552149929.dkr.ecr.us-east-1.amazonaws.com'
-                    sh '492552149929.dkr.ecr.us-east-1.amazonaws.com/nextcloud:$BUILD_NUMBER'
+                    sh 'aws ecr get-login-password --region ca-central-1 | docker login --username AWS --password-stdin 492552149929.dkr.ecr.ca-central-1.amazonaws.com'
+                    sh 'docker push 492552149929.dkr.ecr.ca-central-1.amazonaws.com/nextcloudapp:$BUILD_NUMBER'
                     
                 }
             }
